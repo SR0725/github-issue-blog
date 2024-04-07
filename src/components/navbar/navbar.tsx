@@ -27,6 +27,7 @@ const Navbar = ({ session }: { session: Session | null }) => {
             isFocused={pathname === "/blog/create"}
             onClick={() => router.push("/blog/create")}
             tooltip="建立新文章"
+            aria-labelledby="create-blog"
           >
             <MdEdit />
           </NavbarButton>
@@ -36,6 +37,7 @@ const Navbar = ({ session }: { session: Session | null }) => {
             isFocused={false}
             onClick={() => signOut({ callbackUrl: "/" })}
             tooltip="登出"
+            aria-labelledby="logout"
           >
             <MdLogout />
           </NavbarButton>
@@ -45,6 +47,7 @@ const Navbar = ({ session }: { session: Session | null }) => {
             isFocused={false}
             onClick={() => signIn("github", { callbackUrl: "/" })}
             tooltip="登入"
+            aria-labelledby="login"
           >
             <MdLogin />
           </NavbarButton>

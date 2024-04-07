@@ -27,35 +27,30 @@ function BlogList({ session }: { session: Session | null }) {
     if (intersection?.isIntersecting) fetchNextPage();
   }, [intersection?.isIntersecting, fetchNextPage]);
 
-  if (isLoading)
-    return (
-      <div className="mx-auto flex min-h-screen w-full max-w-[720px] flex-col items-center gap-2 rounded bg-white pt-16">
-        Loading...
-      </div>
-    );
-
   return (
     <>
       <div className="mx-auto flex min-h-screen w-full max-w-[720px] flex-col items-center gap-2 rounded bg-white">
-        {pages.map(({ data }, index) => (
-          <Fragment key={index}>
-            {data.map((issue) => (
-              <BlogListItem key={issue.id} issue={issue} session={session} />
-            ))}
-          </Fragment>
-        ))}
+        {!isLoading &&
+          pages.map(({ data }, index) => (
+            <Fragment key={index}>
+              {data.map((issue) => (
+                <BlogListItem key={issue.id} issue={issue} session={session} />
+              ))}
+            </Fragment>
+          ))}
 
         <Button
           ref={loadMoreRef}
+          disabled={!hasNextPage || isFetchingNextPage}
           color="primary"
           variant="light"
           onClick={() => fetchNextPage()}
         >
-          {hasNextPage
-            ? isFetchingNextPage
-              ? "Loading more..."
-              : "Load more"
-            : "No more data"}
+          {isLoading
+            ? "Loading..."
+            : hasNextPage
+              ? "Load more"
+              : "No more data"}
         </Button>
       </div>
     </>

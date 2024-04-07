@@ -1,22 +1,16 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { remark } from "remark";
-import remarkGfm from "remark-gfm";
-import html from "remark-html";
 import { Avatar } from "@/components/nextui";
 import { Comment } from "@/models/comment";
+import transformMdToHtml from "@/utils/transform-md-to-html";
 
 function BlogCommentListItem({ comment }: { comment: Comment }) {
   const [content, setContent] = useState<string>("");
 
   useEffect(() => {
     const processContent = async () => {
-      const processedContent = await remark()
-        .use(remarkGfm)
-        .use(html)
-        .process(comment.body ?? "");
-      const htmlContent = processedContent.toString();
+      const htmlContent = await transformMdToHtml(comment.body ?? "");
       setContent(htmlContent);
     };
 

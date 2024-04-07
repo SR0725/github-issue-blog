@@ -1,14 +1,12 @@
 import { Metadata } from "next";
 import { getServerSession } from "next-auth";
 import "github-markdown-css/github-markdown-light.css";
-import { remark } from "remark";
-import remarkGfm from "remark-gfm";
-import html from "remark-html";
 import { options } from "@/app/api/auth/[...nextauth]/options";
 import Blog from "@/components/blog/blog";
 import BlogCommentList from "@/components/blog/blog-comment-list";
 import { createSingletonOctokit } from "@/hooks/useOctokit";
 import { fetchGetIssue } from "@/hooks/useQueryIssue";
+import transformMdToHtml from "@/utils/transform-md-to-html";
 
 export const metadata: Metadata = {};
 
@@ -16,11 +14,7 @@ const Page = async ({ params }: { params: { issueNumber: string } }) => {
   const session = await getServerSession(options);
   const octokit = createSingletonOctokit(session);
   const issue = await fetchGetIssue(octokit, Number(params.issueNumber));
-  const processedContent = await remark()
-    .use(remarkGfm)
-    .use(html)
-    .process(issue.body);
-  const htmlContent = processedContent.toString();
+  const htmlContent = await transformMdToHtml(issue.body);
   const description = issue.body?.slice(0, 150) + "...";
 
   metadata.title = issue.title;

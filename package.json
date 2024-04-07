@@ -6,7 +6,9 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "format": "prettier --write .",
+    "format:list": "prettier --list-different ."
   },
   "dependencies": {
     "@mdxeditor/editor": "^2.19.0",
@@ -29,6 +31,7 @@
     "zod": "^3.22.4"
   },
   "devDependencies": {
+    "@trivago/prettier-plugin-sort-imports": "^4.3.0",
     "@types/node": "^20",
     "@types/react": "^18",
     "@types/react-dom": "^18",

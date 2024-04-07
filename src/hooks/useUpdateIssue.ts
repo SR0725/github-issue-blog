@@ -43,6 +43,7 @@ function useUpdateIssue(issueNumber: number, session: Session) {
       fetchPatchIssue(octokit, issueNumber, newContent),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["issue", issueNumber] });
+      queryClient.invalidateQueries({ queryKey: ["issues"] });
     },
   });
 

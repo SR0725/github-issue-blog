@@ -1,14 +1,14 @@
-import Blog from "@/components/blog/blog";
-import { getServerSession } from "next-auth";
-import { options } from "@/app/api/auth/[...nextauth]/options";
-import { fetchGetIssue } from "@/hooks/useQueryIssue";
-import { createSingletonOctokit } from "@/hooks/useOctokit";
-import { remark } from "remark";
-import html from "remark-html";
-import BlogCommentList from "@/components/blog/blog-comment-list";
-import "github-markdown-css/github-markdown-light.css";
-import remarkGfm from "remark-gfm";
 import { Metadata } from "next";
+import { getServerSession } from "next-auth";
+import "github-markdown-css/github-markdown-light.css";
+import { remark } from "remark";
+import remarkGfm from "remark-gfm";
+import html from "remark-html";
+import { options } from "@/app/api/auth/[...nextauth]/options";
+import Blog from "@/components/blog/blog";
+import BlogCommentList from "@/components/blog/blog-comment-list";
+import { createSingletonOctokit } from "@/hooks/useOctokit";
+import { fetchGetIssue } from "@/hooks/useQueryIssue";
 
 export const metadata: Metadata = {};
 
@@ -21,22 +21,23 @@ const Page = async ({ params }: { params: { issueNumber: string } }) => {
     .use(html)
     .process(issue.body);
   const htmlContent = processedContent.toString();
+  const description = issue.body?.slice(0, 150) + "...";
 
   metadata.title = issue.title;
-  metadata.description = issue.body.slice(0, 150) + "...";
+  metadata.description = description;
 
   metadata.openGraph = {
     type: "article",
     title: issue.title,
-    description: issue.body.slice(0, 150) + "...",
+    description,
     url: issue.html_url,
   };
 
   return (
-    <div className="min-h-screen bg-[#00324E] pt-4">
+    <div className="min-h-screen bg-dark-blue pt-4">
       <div className="mx-auto min-h-screen w-full max-w-[720px] rounded bg-white px-[60px] text-black">
         <Blog issue={issue} session={session} htmlContent={htmlContent} />
-        <div className="border-b border-solid border-[rgba(0,0,0,0.05)] pb-1 pt-10 text-base font-normal leading-6 text-[rgba(0,0,0,0.5)]">
+        <div className="border-b border-solid border-black border-opacity-5 pb-1 pt-10 text-base font-normal leading-6 text-black text-opacity-50">
           共 {issue.comments} 則留言
         </div>
         <BlogCommentList issue={issue} session={session} />

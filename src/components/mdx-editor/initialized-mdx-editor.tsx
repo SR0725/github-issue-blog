@@ -1,4 +1,5 @@
 "use client";
+
 import type { ForwardedRef } from "react";
 import {
   headingsPlugin,
@@ -36,7 +37,6 @@ export default function InitializedMDXEditor({
   return (
     <MDXEditor
       plugins={[
-        // Example Plugin Usage
         headingsPlugin({ allowedHeadingLevels: [1, 2, 3] }),
         listsPlugin(),
         quotePlugin(),

@@ -1,4 +1,7 @@
 "use client";
+
+import { Session } from "next-auth";
+import { toast } from "sonner";
 import {
   Modal,
   ModalContent,
@@ -9,8 +12,6 @@ import {
 } from "@/components/nextui";
 import useUpdateIssue from "@/hooks/useUpdateIssue";
 import { Issue } from "@/models/issue";
-import { Session } from "next-auth";
-import { toast } from "sonner";
 
 function BlogDeleteModal({
   issue,
@@ -39,7 +40,7 @@ function BlogDeleteModal({
           console.error(error);
           toast.error("發生錯誤，請檢查 F12 Console");
         },
-      },
+      }
     );
   };
 

@@ -1,8 +1,8 @@
-import { Issue } from "@/models/issue";
 import { Session } from "next-auth";
-import useOctokit from "./useOctokit";
-import { useInfiniteQuery } from "@tanstack/react-query";
 import { Octokit } from "@octokit/core";
+import { useInfiniteQuery } from "@tanstack/react-query";
+import { Issue } from "@/models/issue";
+import useOctokit from "./useOctokit";
 
 const BATCH_SIZE = 10;
 
@@ -15,7 +15,7 @@ interface IssueInfiniteQueryData {
 
 async function fetchGetIssues(
   octokit: Octokit,
-  pageParam: unknown,
+  pageParam: unknown
 ): Promise<IssueInfiniteQueryData> {
   const repoName = process.env.NEXT_PUBLIC_REPO_NAME;
   const owner = process.env.NEXT_PUBLIC_REPO_OWNER;
@@ -32,7 +32,7 @@ async function fetchGetIssues(
       per_page: BATCH_SIZE,
       page: pageParam,
       state: "open",
-    },
+    }
   );
   return {
     data: response.data as Issue[],

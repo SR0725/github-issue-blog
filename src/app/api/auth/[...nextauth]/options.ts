@@ -1,5 +1,5 @@
-import GitHubProvider from "next-auth/providers/github";
 import type { AuthOptions } from "next-auth";
+import GitHubProvider from "next-auth/providers/github";
 
 export const options: AuthOptions = {
   providers: [
@@ -19,6 +19,13 @@ export const options: AuthOptions = {
     signOut: "/sign-out",
   },
   callbacks: {
+    async signIn({ user, account, profile, email, credentials }) {
+      const owner = process.env.NEXT_PUBLIC_REPO_OWNER;
+      if (profile?.login !== owner) {
+        return false;
+      }
+      return true;
+    },
     async jwt({ token, account }) {
       if (account) {
         token = {

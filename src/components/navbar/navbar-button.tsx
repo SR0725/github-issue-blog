@@ -1,7 +1,7 @@
 "use client";
 
-import { Tooltip } from "@/components/nextui";
 import clsx from "clsx";
+import { Tooltip } from "@/components/nextui";
 
 interface NavbarButtonProps
   extends React.ButtonHTMLAttributes<HTMLButtonElement> {
@@ -22,9 +22,9 @@ const NavbarButton = (props: NavbarButtonProps) => {
         className={clsx(
           "flex h-full w-14 flex-shrink-0 items-center justify-center text-white",
           {
-            "bg-[rgba(0,0,0,0.4)]": isFocused,
+            "bg-black bg-opacity-40": isFocused,
           },
-          className,
+          className
         )}
         {...rest}
       ></button>

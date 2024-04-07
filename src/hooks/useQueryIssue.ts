@@ -1,12 +1,12 @@
-import { Issue } from "@/models/issue";
 import { Session } from "next-auth";
-import useOctokit from "./useOctokit";
-import { useQuery } from "@tanstack/react-query";
 import { Octokit } from "@octokit/core";
+import { useQuery } from "@tanstack/react-query";
+import { Issue } from "@/models/issue";
+import useOctokit from "./useOctokit";
 
 export async function fetchGetIssue(
   octokit: Octokit,
-  issueNumber: number,
+  issueNumber: number
 ): Promise<Issue> {
   const repoName = process.env.NEXT_PUBLIC_REPO_NAME;
   const owner = process.env.NEXT_PUBLIC_REPO_OWNER;
@@ -21,7 +21,7 @@ export async function fetchGetIssue(
       owner,
       repo: repoName,
       issue_number: issueNumber,
-    },
+    }
   );
   return response.data;
 }

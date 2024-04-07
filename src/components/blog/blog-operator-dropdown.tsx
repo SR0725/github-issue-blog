@@ -1,5 +1,7 @@
 "use client";
-import { Issue } from "@/models/issue";
+
+import { Session } from "next-auth";
+import { useRouter } from "next/navigation";
 import {
   Dropdown,
   DropdownTrigger,
@@ -7,8 +9,7 @@ import {
   DropdownItem,
   useDisclosure,
 } from "@/components/nextui";
-import { Session } from "next-auth";
-import { useRouter } from "next/navigation";
+import { Issue } from "@/models/issue";
 import BlogDeleteModal from "./blog-delete-modal";
 
 function BlogOperatorDropdown({

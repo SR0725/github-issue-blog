@@ -1,12 +1,13 @@
 "use client";
-import { Issue } from "@/models/issue";
+
 import { Session } from "next-auth";
-import "github-markdown-css/github-markdown-light.css";
-import useUpdateIssue from "@/hooks/useUpdateIssue";
-import { toast } from "sonner";
-import { BlogSchema } from "@/models/blog-schema";
-import BlogEditor from "./blog-editor";
 import { useRouter } from "next/navigation";
+import "github-markdown-css/github-markdown-light.css";
+import { toast } from "sonner";
+import useUpdateIssue from "@/hooks/useUpdateIssue";
+import { BlogSchema } from "@/models/blog-schema";
+import { Issue } from "@/models/issue";
+import BlogEditor from "./blog-editor";
 
 function BlogEditorContainer({
   session,
@@ -33,7 +34,7 @@ function BlogEditorContainer({
           console.error(error);
           toast.error("發生錯誤，請檢查 F12 Console");
         },
-      },
+      }
     );
   };
 

@@ -1,11 +1,12 @@
 "use client";
+
 import { Session } from "next-auth";
+import { useRouter } from "next/navigation";
 import "github-markdown-css/github-markdown-light.css";
 import { toast } from "sonner";
+import useCreateIssue from "@/hooks/useCreateIssue";
 import { BlogSchema } from "@/models/blog-schema";
 import BlogEditor from "./blog-editor";
-import useCreateIssue from "@/hooks/useCreateIssue";
-import { useRouter } from "next/navigation";
 
 function BlogCreateContainer({ session }: { session: Session }) {
   const createMutation = useCreateIssue(session);
@@ -26,7 +27,7 @@ function BlogCreateContainer({ session }: { session: Session }) {
           console.error(error);
           toast.error("發生錯誤，請檢查 F12 Console");
         },
-      },
+      }
     );
   };
 

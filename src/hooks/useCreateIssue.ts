@@ -1,8 +1,8 @@
-import { Issue } from "@/models/issue";
 import { Session } from "next-auth";
-import useOctokit from "./useOctokit";
-import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { Octokit } from "@octokit/core";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
+import { Issue } from "@/models/issue";
+import useOctokit from "./useOctokit";
 
 interface ContentData {
   title?: string;
@@ -12,7 +12,7 @@ interface ContentData {
 
 async function fetchPostIssue(
   octokit: Octokit,
-  newContent: ContentData,
+  newContent: ContentData
 ): Promise<Issue> {
   const repoName = process.env.NEXT_PUBLIC_REPO_NAME;
   const owner = process.env.NEXT_PUBLIC_REPO_OWNER;
@@ -30,7 +30,7 @@ async function fetchPostIssue(
         owner,
         repo: repoName,
         ...newContent,
-      },
+      }
     );
     console.log(response);
     return response.data;

@@ -1,10 +1,10 @@
 import { getServerSession } from "next-auth";
-import { options } from "@/app/api/auth/[...nextauth]/options";
-import { fetchGetIssue } from "@/hooks/useQueryIssue";
-import { createSingletonOctokit } from "@/hooks/useOctokit";
 import { redirect } from "next/navigation";
 import "github-markdown-css/github-markdown-light.css";
+import { options } from "@/app/api/auth/[...nextauth]/options";
 import BlogEditorContainer from "@/components/blog/blog-editor-container";
+import { createSingletonOctokit } from "@/hooks/useOctokit";
+import { fetchGetIssue } from "@/hooks/useQueryIssue";
 
 const Page = async ({ params }: { params: { issueNumber: string } }) => {
   const session = await getServerSession(options);
@@ -24,7 +24,7 @@ const Page = async ({ params }: { params: { issueNumber: string } }) => {
   }
 
   return (
-    <div className="min-h-screen bg-[#00324E] pt-4">
+    <div className="min-h-screen bg-dark-blue pt-4">
       <BlogEditorContainer session={session} issue={issue} />
     </div>
   );

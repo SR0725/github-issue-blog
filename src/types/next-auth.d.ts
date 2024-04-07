@@ -14,4 +14,8 @@ declare module "next-auth" {
   interface JWT {
     access_token: string;
   }
+
+  interface Profile {
+    login: string;
+  }
 }

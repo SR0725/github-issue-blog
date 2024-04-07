@@ -1,11 +1,11 @@
 "use client";
-import { Comment } from "@/models/comment";
-import { Avatar } from "@/components/nextui";
+
+import { useEffect, useState } from "react";
 import { remark } from "remark";
 import remarkGfm from "remark-gfm";
 import html from "remark-html";
-
-import { useEffect, useState } from "react";
+import { Avatar } from "@/components/nextui";
+import { Comment } from "@/models/comment";
 
 function BlogCommentListItem({ comment }: { comment: Comment }) {
   const [content, setContent] = useState<string>("");
@@ -26,7 +26,7 @@ function BlogCommentListItem({ comment }: { comment: Comment }) {
   return (
     <div
       key={comment.id}
-      className="flex items-start pb-4 pt-5 text-[rgba(0,0,0,0.85)]"
+      className="flex items-start pb-4 pt-5  text-black text-opacity-85"
     >
       <Avatar
         src={comment.user.avatar_url}
@@ -45,7 +45,7 @@ function BlogCommentListItem({ comment }: { comment: Comment }) {
         <div className="markdown-body text-base font-normal leading-7">
           <div dangerouslySetInnerHTML={{ __html: content }} />
         </div>
-        <div className="ml-2 text-sm text-[rgba(0,0,0,0.5)]">
+        <div className="ml-2 text-sm text-black text-opacity-50">
           {new Date(comment.created_at).toLocaleString()}
         </div>
       </div>

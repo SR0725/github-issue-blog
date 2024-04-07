@@ -2,12 +2,12 @@
 
 import type { PropsWithChildren } from "react";
 import { useState } from "react";
+import { toast } from "sonner";
 import {
   QueryCache,
   QueryClient,
   QueryClientProvider,
 } from "@tanstack/react-query";
-import { toast } from "sonner";
 
 function ReactQueryProvider({ children }: PropsWithChildren) {
   const [queryClient] = useState(
@@ -19,7 +19,7 @@ function ReactQueryProvider({ children }: PropsWithChildren) {
             toast.error(error.message);
           },
         }),
-      }),
+      })
   );
 
   return (

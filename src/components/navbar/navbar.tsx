@@ -1,16 +1,17 @@
 "use client";
+
 import { MdEdit, MdHome, MdLogin, MdLogout } from "react-icons/md";
-import NavbarButton from "./navbar-button";
-import { usePathname, useRouter } from "next/navigation";
 import { Session } from "next-auth";
 import { signIn, signOut } from "next-auth/react";
+import { usePathname, useRouter } from "next/navigation";
+import NavbarButton from "./navbar-button";
 
 const Navbar = ({ session }: { session: Session | null }) => {
   const pathname = usePathname();
   const router = useRouter();
 
   return (
-    <nav className="sticky top-0 z-20 flex h-12 w-full items-center justify-between bg-[#006AA6] px-8">
+    <nav className="sticky top-0 z-20 flex h-12 w-full items-center justify-between bg-navbar-blue px-8">
       <div className="flex h-full">
         <NavbarButton
           isFocused={pathname === "/"}

@@ -1,6 +1,7 @@
 # 範例
 
 你可以在這個網站中看到這個專案的實際應用：[https://github-issue-blog-ruddy.vercel.app/](https://github-issue-blog-ruddy.vercel.app/)
+另外該專案的文章(issue)，是存放在這個專案的 [issue](https://github.com/SR0725/github_blog_issue/issues) 中
 
 # 操作指南
 
@@ -16,6 +17,7 @@
 - 新增 / 編輯文章時
   - 至少需要使用 title 和 body 兩個欄位
   - 表單驗證:title 為必填,body 至少需要 30 字
+
 # 安裝指南
 
 ## 環境變數配置
